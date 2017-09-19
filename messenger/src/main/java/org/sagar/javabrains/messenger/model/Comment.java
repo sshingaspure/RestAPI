@@ -1,30 +1,26 @@
 package org.sagar.javabrains.messenger.model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
-public class Message {
+public class Comment {
 
 	private int id;
 	private String message;
 	private Date createdDate;
 	private String author;
-	private Map<Integer, Comment> comments=new HashMap<Integer,Comment>();
 
-	public Message() {
-		this.createdDate=new Date();
+	public Comment() {
+		this.createdDate = new Date();
 	}
 
-	public Message(int id, String message, String author) {
+	public Comment(int id, String message, Date createdDate, String author) {
 		super();
 		this.id = id;
 		this.message = message;
-		this.createdDate = new Date();
+		this.createdDate = createdDate;
 		this.author = author;
 	}
 
@@ -60,13 +56,4 @@ public class Message {
 		this.author = author;
 	}
 
-	@XmlTransient
-	public Map<Integer, Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Map<Integer, Comment> comments) {
-		this.comments = comments;
-	}
-	
 }
