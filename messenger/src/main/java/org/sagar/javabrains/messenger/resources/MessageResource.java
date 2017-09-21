@@ -2,6 +2,7 @@ package org.sagar.javabrains.messenger.resources;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -62,5 +63,36 @@ public class MessageResource {
 	public void deleteMessage(@PathParam("messageId") int id) {
 		messageSrivce.removeMessage(id);
 	}
-
+	
+	@GET
+	@Path("/{messageId}/comments/")
+	public CommentResource getComment(){
+		return new CommentResource();
+	}
+	
+	@GET
+	@Path("/{messageId}/comments")
+	public CommentResource getAllComments(){
+		return new CommentResource();
+	}
+	
+	@POST
+	@Path("/{messageId}/comments")
+	public CommentResource addComment(){
+		return new CommentResource();
+	}
+	
+	@PUT
+	@Path("/{messageId}/comments")
+	public CommentResource updateComment(){
+		return new CommentResource();
+	}
+	
+	
+	@DELETE
+	@Path("/{messageId}/comments")
+	public CommentResource deleteComment(){
+		return new CommentResource();
+	}
+	
 }

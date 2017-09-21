@@ -20,15 +20,20 @@ public class CommentService {
 		return new ArrayList<Comment>(messages.get(messageId).getComments().values());
 	}
 
-	public Comment addComment(int messageId,Comment comment){
-		Message message=messages.get(messageId);
+	public Comment addComment(int messageId, Comment comment) {
+		Message message = messages.get(messageId);
 		message.getComments().put(comment.getId(), comment);
 		return comment;
 	}
-	
-	public Comment updateComment(int messageId,int commentId, Comment comment){
-		Message message=messages.get(messageId);
+
+	public Comment updateComment(int messageId, int commentId, Comment comment) {
+		Message message = messages.get(messageId);
 		comment.setId(commentId);
 		return message.getComments().replace(commentId, comment);
+	}
+
+	public Comment removeComment(int messageId, int commentId) {
+		Message message = messages.get(messageId);
+		return message.getComments().remove(commentId);
 	}
 }
