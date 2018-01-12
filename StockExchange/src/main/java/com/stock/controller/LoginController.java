@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.stock.model.User;
 import com.stock.service.LoginService;
@@ -35,7 +36,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/validate")
-	public ModelAndView validateUser(HttpServletRequest request,HttpServletResponse res) {
+	public ModelAndView validateUser(HttpServletRequest request,HttpServletResponse res,RedirectAttributes redirectAttributes) {
 		String uname=request.getParameter("uname");
 		String password=request.getParameter("passwd");
 		User user=loginService.validateUser(uname, Encryption.encrypt(password));
@@ -51,6 +52,18 @@ public class LoginController {
 			modelAndView.setViewName("welcomePage");
 			return modelAndView; 
 		}
+	
+	/*	if (user==null) {
+			ModelAndView modelAndView=new ModelAndView();
+			modelAndView.addObject("message", "Invalid Username or Password");
+			modelAndView.setViewName("signin");
+			return modelAndView; 
+		}else {
+			ModelAndView modelAndView=new ModelAndView();
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("redirect:/application/homePage");
+			return modelAndView; 
+		}*/
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -64,4 +77,6 @@ public class LoginController {
 		loginService.registerUser(user);
 		return "signin";
 	}
+	
+	
 }

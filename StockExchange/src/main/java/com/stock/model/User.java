@@ -1,10 +1,14 @@
 package com.stock.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,22 +16,33 @@ import javax.persistence.Table;
 public class User {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "userId")
-	int userId;
+	private int userId;
 
 	@Column(name = "username", unique = true)
-	String username;
+	private String username;
 	
 	@Column(name = "first_name")
-	String firstName;
+	private String firstName;
 	
 	@Column(name = "last_name")
-	String lastName;
+	private String lastName;
 	
 	@Column(name = "password")
-	String password;
+	private String password;
 	
 	@Column(name="balance")
-	double balance;
+	private double balance;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Share> shares=new HashSet<Share>();
+
+	public Set<Share> getShares() {
+		return shares;
+	}
+
+	public void setShares(Set<Share> shares) {
+		this.shares = shares;
+	}
 
 	public int getUserId() {
 		return userId;

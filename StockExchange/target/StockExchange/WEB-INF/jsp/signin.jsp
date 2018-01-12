@@ -10,8 +10,8 @@
 <h2>${message}</h2>
 <h2>Sign In</h2>
 <form action="validate" method="post">
-<label>Username</label><input type="text" title="Enter UserName" id="uname">
-<label>Password</label><input type="password" title="Enter Password" id="passwd">
+<label>Username</label><input type="text" title="Enter UserName" name="uname">
+<label>Password</label><input type="password" title="Enter Password" name="passwd">
 <input type="submit" value="LogIn">
 </form>
 </body>
